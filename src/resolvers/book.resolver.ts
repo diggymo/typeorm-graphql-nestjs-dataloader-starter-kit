@@ -3,6 +3,7 @@ import RepoService from '../repo.service';
 import Author from '../db/models/author.entity';
 import Book from '../db/models/book.entity';
 import BookInput from './input/book.input';
+import { MaxLength, Length, ValidateNested } from "class-validator";
 
 @Resolver(Book)
 class BookResolver {
@@ -18,6 +19,7 @@ class BookResolver {
   }
 
   @Mutation(() => Book)
+  @ValidateNested()
   public async createBook(@Args('data') input: BookInput): Promise<Book> {
     const book = new Book();
     book.title = input.title;

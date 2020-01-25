@@ -1,30 +1,37 @@
 import { Field, InputType } from 'type-graphql';
 import AuthorInput from './author.input';
-import { MaxLength, Length } from "class-validator";
+import { MaxLength, ValidateNested, Length } from "class-validator";
+import {Type} from "class-transformer"
 
 @InputType()
 class BookAuthorConnectInput {
   @Field()
-  readonly id: number;
+  id: number;
 }
 
 @InputType()
 class BookAuthorInput {
   @Field({nullable: true})
-  readonly connect: BookAuthorConnectInput;
+  @ValidateNested()
+  connect: BookAuthorConnectInput;
 
   @Field({nullable: true})
-  readonly create: AuthorInput;
+  @ValidateNested()
+  @Type(() => AuthorInput)
+  create: AuthorInput;
 }
 
 @InputType()
 class BookInput {
   @Field()
   @MaxLength(30)
+  @Length(1,2)
   title: string;
 
   @Field()
-  readonly author: BookAuthorInput;
+  @ValidateNested()
+  @Type(() => BookAuthorInput)
+  author: BookAuthorInput;
 }
 
 export default BookInput;
