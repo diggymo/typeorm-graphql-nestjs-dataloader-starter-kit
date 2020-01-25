@@ -1,5 +1,6 @@
 import { Field, InputType } from 'type-graphql';
 import AuthorInput from './author.input';
+import { MaxLength, Length } from "class-validator";
 
 @InputType()
 class BookAuthorConnectInput {
@@ -19,7 +20,8 @@ class BookAuthorInput {
 @InputType()
 class BookInput {
   @Field()
-  readonly title: string;
+  @MaxLength(30)
+  title: string;
 
   @Field()
   readonly author: BookAuthorInput;

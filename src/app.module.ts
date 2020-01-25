@@ -19,7 +19,8 @@ const graphQLImports = [
 
 @Module({
 
-  imports: [TypeOrmModule.forRoot(),
+  imports: [
+    TypeOrmModule.forRoot(),
     RepoModule,
     ...graphQLImports,
     GraphQLModule.forRoot({
