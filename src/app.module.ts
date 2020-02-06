@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import RepoModule from './repo.module';
-import { GraphQLModule } from "lib/my-nestjs-graphql-module"
+import { GraphQLModule } from "@nestjs/graphql"
 import AuthorResolver from './resolvers/author.resolver';
 import BookResolver from './resolvers/book.resolver';
 import GenreResolver from './resolvers/genre.resolver';

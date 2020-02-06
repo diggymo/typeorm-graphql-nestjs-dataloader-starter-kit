@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from 'lib/my-nestjs-graphql-module';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import RepoService from '../repo.service';
 import Author from '../db/models/author.entity';
 import AuthorInput from './input/author.input';
