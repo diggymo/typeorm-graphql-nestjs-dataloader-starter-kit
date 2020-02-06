@@ -3,12 +3,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import RepoModule from './repo.module';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule } from "lib/my-nestjs-graphql-module"
 import AuthorResolver from './resolvers/author.resolver';
 import BookResolver from './resolvers/book.resolver';
 import GenreResolver from './resolvers/genre.resolver';
 import BookGenreResolver from './resolvers/book-genre.resolver';
 import { genreBooksLoader } from './db/loaders/books.loader';
+
+import { AuthChecker } from "type-graphql";
+
+const authChecker :AuthChecker<{}, "admin"> = () => {
+  return false
+}
 
 const graphQLImports = [
   AuthorResolver,
@@ -29,6 +35,9 @@ const graphQLImports = [
       context: {
         genreBooksLoader: genreBooksLoader(),
       },
+      buildSchemaOptions: {
+        authChecker
+      }
     }),
   ],
   controllers: [AppController],

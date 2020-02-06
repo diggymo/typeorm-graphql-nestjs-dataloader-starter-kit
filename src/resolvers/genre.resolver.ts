@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Parent, Query, ResolveProperty, Resolver } from 'lib/my-nestjs-graphql-module';
 import RepoService from '../repo.service';
 import Author from '../db/models/author.entity';
 import Book from '../db/models/book.entity';
